@@ -54,16 +54,17 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 20),
                 // Use Row for wide screens, Column for narrow screens
                 if (isWideScreen)
-                  Expanded(
+                  const Expanded(
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const BoardWidget(),
-                        const SizedBox(width: 20),
+                        BoardWidget(),
+                        SizedBox(width: 20),
                         SizedBox(
-                            width: constraints.maxWidth < 700 ? 200 : 300,
-                            child: const HistoryListWidget()),
+                          width: 300,
+                          child: HistoryListWidget(),
+                        ),
                       ],
                     ),
                   )
@@ -73,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         BoardWidget(),
                         SizedBox(height: 20),
-                        HistoryListWidget(),
+                        Expanded(child: HistoryListWidget()),
                       ],
                     ),
                   ),
