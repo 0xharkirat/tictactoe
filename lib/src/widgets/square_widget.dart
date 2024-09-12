@@ -9,25 +9,27 @@ class SquareWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentSquare = ref.watch(historyController).last[id];
-    return GestureDetector(
-      onTap: currentSquare == null &&
+    return TextButton(
+      
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.all(0),
+        minimumSize: const Size(100, 100),
+        shape: const RoundedRectangleBorder(
+          side: BorderSide(color: Colors.black),
+          borderRadius: BorderRadius.all(
+            Radius.circular(0),
+          ),
+        ),
+      ),
+      onPressed: currentSquare == null &&
               ref.read(historyController.notifier).checkWinner() == null
           ? () {
               ref.read(historyController.notifier).makeMove(id);
               ref.read(moveController.notifier).increment();
             }
           : null,
-     
-      child: Container(
-        width: 100,
-        height: 100,
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black, width: 1),
-        ),
-        child: Center(
-            child: Text(currentSquare ?? "",
-                style: const TextStyle(fontSize: 50))),
-      ),
+      child: Text(currentSquare ?? "",
+          style: const TextStyle(fontSize: 50, color: Colors.black)),
     );
   }
 }

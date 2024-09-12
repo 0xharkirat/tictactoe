@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tic Tac Toe'),
+        title: const Text('Tic Tac Toe w Flutter & Riverpod'),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       ),
@@ -63,6 +63,7 @@ class HomeScreen extends StatelessWidget {
                         BoardWidget(),
                         SizedBox(height: 20),
                         HistoryListWidget(),
+                        
                       ],
                     ),
                   ),
