@@ -10,13 +10,14 @@ class HistoryListWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final history = ref.watch(historyController);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-      child: ListView.builder(
-        itemCount: ref.watch(historyController).length,
-        itemBuilder: (context, index) {
+      child: Column(
+        children: List.generate(history.length, (index) {
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(bottom: 8),
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
@@ -40,7 +41,7 @@ class HistoryListWidget extends ConsumerWidget {
               ),
             ),
           );
-        },
+        }),
       ),
     );
   }

@@ -29,33 +29,33 @@ class HomeScreen extends StatelessWidget {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          // Check if the screen width is larger than a specific breakpoint, e.g., 600
           bool isWideScreen = constraints.maxWidth > 600;
 
-          return Center(
-            child: Column(
-              children: [
-                Consumer(builder: (context, ref, child) {
-                  final winner =
-                      ref.watch(historyController.notifier).checkWinner();
-                  final currentPlayer =
-                      ref.watch(moveController) % 2 == 0 ? "X" : "O";
-                  if (winner != null) {
+          return SingleChildScrollView(
+            // Make the entire page scrollable
+            child: Center(
+              child: Column(
+                children: [
+                  Consumer(builder: (context, ref, child) {
+                    final winner =
+                        ref.watch(historyController.notifier).checkWinner();
+                    final currentPlayer =
+                        ref.watch(moveController) % 2 == 0 ? "X" : "O";
+                    if (winner != null) {
+                      return Text(
+                        "Winner: $winner",
+                        style: const TextStyle(fontSize: 50),
+                      );
+                    }
                     return Text(
-                      "Winner: $winner",
+                      "Next player: $currentPlayer",
                       style: const TextStyle(fontSize: 50),
                     );
-                  }
-                  return Text(
-                    "Next player: $currentPlayer",
-                    style: const TextStyle(fontSize: 50),
-                  );
-                }),
-                const SizedBox(height: 20),
-                // Use Row for wide screens, Column for narrow screens
-                if (isWideScreen)
-                  const Expanded(
-                    child: Row(
+                  }),
+                  const SizedBox(height: 20),
+                  // Use Row for wide screens, Column for narrow screens
+                  if (isWideScreen)
+                    const Row(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -66,19 +66,17 @@ class HomeScreen extends StatelessWidget {
                           child: HistoryListWidget(),
                         ),
                       ],
-                    ),
-                  )
-                else
-                  const Expanded(
-                    child: Column(
+                    )
+                  else
+                    const Column(
                       children: [
                         BoardWidget(),
                         SizedBox(height: 20),
-                        Expanded(child: HistoryListWidget()),
+                        HistoryListWidget(),
                       ],
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
           );
         },
