@@ -9,7 +9,7 @@ class SquareWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentSquare = ref.watch(historyController).last[id];
-    return InkWell(
+    return GestureDetector(
       onTap: currentSquare == null &&
               ref.read(historyController.notifier).checkWinner() == null
           ? () {
@@ -17,7 +17,7 @@ class SquareWidget extends ConsumerWidget {
               ref.read(moveController.notifier).increment();
             }
           : null,
-      mouseCursor: SystemMouseCursors.click,
+     
       child: Container(
         width: 100,
         height: 100,
