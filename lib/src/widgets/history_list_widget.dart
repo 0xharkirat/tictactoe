@@ -20,7 +20,7 @@ class HistoryListWidget extends ConsumerWidget {
             padding: const EdgeInsets.only(bottom: 8),
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
+                border: Border.all(color: Colors.white),
               ),
               child: ListTile(
                 leading: Icon(

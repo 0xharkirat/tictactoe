@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 import 'package:tictactoe/src/screens/home_screen.dart';
 
@@ -13,10 +14,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return ShadApp.material(
       title: 'Tic Tac Toe',
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      themeMode: ThemeMode.dark,
+      darkTheme: ShadThemeData(
+        brightness: Brightness.dark,
+        colorScheme: const ShadSlateColorScheme.dark(),
+      ),
+      home: const HomeScreen(),
     );
   }
 }

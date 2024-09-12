@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:tictactoe/src/controllers/move_controller.dart';
 import 'package:tictactoe/src/controllers/squares_controller.dart';
 
@@ -9,16 +10,20 @@ class SquareWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentSquare = ref.watch(historyController).last[id];
-    return TextButton(
-      
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.all(0),
-        minimumSize: const Size(100, 100),
-        shape: const RoundedRectangleBorder(
-          side: BorderSide(color: Colors.black),
-          borderRadius: BorderRadius.all(
-            Radius.circular(0),
-          ),
+    return ShadButton(
+      cursor: SystemMouseCursors.click,
+      padding: EdgeInsets.zero,
+      enabled: currentSquare == null &&
+          ref.read(historyController.notifier).checkWinner() == null,
+      backgroundColor: ShadTheme.of(context).colorScheme.background,
+      width: 100,
+      height: 100,
+      hoverBackgroundColor: ShadTheme.of(context).colorScheme.primaryForeground,
+      decoration: ShadDecoration(
+        border: ShadBorder.all(
+          radius: BorderRadius.circular(0),
+          color: Colors.white,
+          width: 1,
         ),
       ),
       onPressed: currentSquare == null &&
@@ -29,7 +34,10 @@ class SquareWidget extends ConsumerWidget {
             }
           : null,
       child: Text(currentSquare ?? "",
-          style: const TextStyle(fontSize: 50, color: Colors.black)),
+          style: TextStyle(
+            fontSize: 50,
+            color: ShadTheme.of(context).colorScheme.foreground,
+          )),
     );
   }
 }

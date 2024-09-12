@@ -10,6 +10,7 @@ class BoardWidget extends StatelessWidget {
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
+          
           children: [
             SquareWidget(0),
             SquareWidget(1),

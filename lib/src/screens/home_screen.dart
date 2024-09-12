@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:tictactoe/src/controllers/move_controller.dart';
 import 'package:tictactoe/src/controllers/squares_controller.dart';
 import 'package:tictactoe/src/widgets/board_widget.dart';
@@ -15,10 +16,10 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Tic Tac Toe w Flutter & Riverpod'),
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: ShadTheme.of(context).colorScheme.primaryForeground,
         actions: [
           IconButton(
-            icon: const Icon(Icons.open_in_new),
+            icon: const Icon(Icons.open_in_new, color: Colors.white),
             tooltip: "Go to Harkirat's Github",
             onPressed: () {
               const url = "https://github.com/0xharkirat";
@@ -55,15 +56,15 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   // Use Row for wide screens, Column for narrow screens
                   if (isWideScreen)
-                    const Row(
+                    Row(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        BoardWidget(),
-                        SizedBox(width: 20),
+                        const BoardWidget(),
+                        const SizedBox(width: 20),
                         SizedBox(
-                          width: 300,
-                          child: HistoryListWidget(),
+                          width: constraints.maxWidth < 650 ? 250 : 300,
+                          child: const HistoryListWidget(),
                         ),
                       ],
                     )
