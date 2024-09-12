@@ -4,6 +4,7 @@ import 'package:tictactoe/src/controllers/move_controller.dart';
 import 'package:tictactoe/src/controllers/squares_controller.dart';
 import 'package:tictactoe/src/widgets/board_widget.dart';
 import 'package:tictactoe/src/widgets/history_list_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,6 +16,16 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Tic Tac Toe w Flutter & Riverpod'),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.open_in_new),
+            tooltip: "Go to Harkirat's Github",
+            onPressed: () {
+              const url = "https://github.com/0xharkirat";
+              launchUrl(Uri.parse(url));
+            },
+          ),
+        ],
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -63,7 +74,6 @@ class HomeScreen extends StatelessWidget {
                         BoardWidget(),
                         SizedBox(height: 20),
                         HistoryListWidget(),
-                        
                       ],
                     ),
                   ),
